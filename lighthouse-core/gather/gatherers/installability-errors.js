@@ -28,6 +28,13 @@ class InstallabilityErrors extends FRGatherer {
     log.time(status);
     const response = await session.sendCommand('Page.getInstallabilityErrors');
 
+    // TODO(FR-COMPAT): add `milestone` toplevel warning and to pass context on old Chrome.
+    // In ~M80 and earlier the property was an array of strings rather than IDs.
+    // @ts-expect-error - We're explicitly checking if this doesn't match the typedefs.
+    if (!response.installabilityErrors && response.errors) {
+      return {errors: []};
+    }
+
     const errors = response.installabilityErrors;
 
     log.timeEnd(status);
