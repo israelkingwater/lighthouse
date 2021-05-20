@@ -84,7 +84,7 @@ function finalizeArtifacts(baseArtifacts, gathererArtifacts) {
   const artifacts = /** @type {LH.Artifacts} */ ({...baseArtifacts, ...gathererArtifacts});
 
   // Set the post-run meta artifacts.
-  artifacts.Timing = log.takeTimeEntries();
+  artifacts.Timing = log.getTimeEntries();
   artifacts.LighthouseRunWarnings = deduplicateWarnings(warnings);
 
   // Check that the runner remembered to mutate the special-case URL artifact.

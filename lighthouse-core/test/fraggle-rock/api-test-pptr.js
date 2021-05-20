@@ -158,9 +158,9 @@ describe('Fraggle Rock API', () => {
 
       const {lhr} = result;
       const {auditResults, failedAudits, erroredAudits} = getAuditsBreakdown(lhr);
-      // TODO(FR-COMPAT): This assertion can be removed when full compatibility is reached. HEAD
-      expect(auditResults.length).toMatchInlineSnapshot(`141`);
-      expect(erroredAudits).toHaveLength(0);
+      // TODO(FR-COMPAT): This assertion can be removed when full compatibility is reached.
+      expect(auditResults.length).toMatchInlineSnapshot(`142`);
+      expect(erroredAudits).toHaveLength(3); // NO_LCP failures from old puppeteer
 
       const failedAuditIds = failedAudits.map(audit => audit.id);
       expect(failedAuditIds).toContain('label');
