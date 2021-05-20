@@ -74,11 +74,8 @@ function deduplicateWarnings(warnings) {
  */
 function finalizeArtifacts(baseArtifacts, gathererArtifacts) {
   const warnings = baseArtifacts.LighthouseRunWarnings
-    .concat(gathererArtifacts.LighthouseRunWarnings || []);
-  warnings.push(...getEnvironmentWarnings({
-    settings: baseArtifacts.settings,
-    baseArtifacts,
-  }));
+    .concat(gathererArtifacts.LighthouseRunWarnings || [])
+    .concat(getEnvironmentWarnings({settings: baseArtifacts.settings, baseArtifacts}));
 
   // Cast to remove the partial from gathererArtifacts.
   const artifacts = /** @type {LH.Artifacts} */ ({...baseArtifacts, ...gathererArtifacts});
