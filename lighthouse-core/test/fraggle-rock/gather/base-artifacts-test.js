@@ -14,7 +14,6 @@ const {
 const {initializeConfig} = require('../../../fraggle-rock/config/config.js');
 const {createMockDriver} = require('./mock-driver.js');
 const LighthouseError = require('../../../lib/lh-error.js');
-const {defaultSettings} = require('../../../config/constants.js');
 
 /** @param {{userAgent: string}} params */
 function getMockDriverForArtifacts({userAgent}) {
