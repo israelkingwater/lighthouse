@@ -47,7 +47,6 @@ describe('.getServiceWorkerVersions', () => {
   });
 
   it('waits for currently installing workers', async () => {
-    jest.useFakeTimers();
     sessionMock.sendCommand
       .mockResponse('ServiceWorker.enable')
       .mockResponse('ServiceWorker.disable');

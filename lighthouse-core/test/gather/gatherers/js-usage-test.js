@@ -7,8 +7,6 @@
 
 /* eslint-env jest */
 
-jest.useFakeTimers();
-
 const Driver = require('../../../gather/driver.js');
 const Connection = require('../../../gather/connections/connection.js');
 const JsUsage = require('../../../gather/gatherers/js-usage.js');

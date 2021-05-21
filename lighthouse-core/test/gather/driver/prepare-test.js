@@ -255,8 +255,6 @@ describe('.prepareTargetForNavigationMode()', () => {
   });
 
   it('enables async stacks on every main frame navigation', async () => {
-    jest.useFakeTimers();
-
     sessionMock.sendCommand
       .mockResponse('Debugger.enable')
       .mockResponse('Debugger.setSkipAllPauses')
@@ -321,8 +319,6 @@ describe('.prepareTargetForNavigationMode()', () => {
   });
 
   it('handle javascript dialogs automatically', async () => {
-    jest.useFakeTimers();
-
     sessionMock.sendCommand.mockResponse('Page.handleJavaScriptDialog');
     sessionMock.on.mockEvent('Page.javascriptDialogOpening', {type: 'confirm'});
 
