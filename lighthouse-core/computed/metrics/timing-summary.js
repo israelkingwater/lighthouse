@@ -12,12 +12,10 @@ const FirstContentfulPaintAllFrames = require('./first-contentful-paint-all-fram
 const FirstMeaningfulPaint = require('./first-meaningful-paint.js');
 const LargestContentfulPaint = require('./largest-contentful-paint.js');
 const LargestContentfulPaintAllFrames = require('./largest-contentful-paint-all-frames.js');
-const FirstCPUIdle = require('./first-cpu-idle.js');
 const Interactive = require('./interactive.js');
 const CumulativeLayoutShift = require('./cumulative-layout-shift.js');
 const CumulativeLayoutShiftAllFrames = require('./cumulative-layout-shift-all-frames.js');
 const SpeedIndex = require('./speed-index.js');
-const EstimatedInputLatency = require('./estimated-input-latency.js');
 const MaxPotentialFID = require('./max-potential-fid.js');
 const TotalBlockingTime = require('./total-blocking-time.js');
 const LayoutShiftVariants = require('../layout-shift-variants.js');
@@ -51,13 +49,11 @@ class TimingSummary {
     const firstMeaningfulPaint = await FirstMeaningfulPaint.request(metricComputationData, context);
     const largestContentfulPaint = await requestOrUndefined(LargestContentfulPaint, metricComputationData); // eslint-disable-line max-len
     const largestContentfulPaintAllFrames = await requestOrUndefined(LargestContentfulPaintAllFrames, metricComputationData); // eslint-disable-line max-len
-    const firstCPUIdle = await requestOrUndefined(FirstCPUIdle, metricComputationData);
     const interactive = await requestOrUndefined(Interactive, metricComputationData);
     const cumulativeLayoutShift = await requestOrUndefined(CumulativeLayoutShift, trace);
     const cumulativeLayoutShiftAllFrames = await requestOrUndefined(CumulativeLayoutShiftAllFrames, trace); // eslint-disable-line max-len
     const maxPotentialFID = await requestOrUndefined(MaxPotentialFID, metricComputationData);
     const speedIndex = await requestOrUndefined(SpeedIndex, metricComputationData);
-    const estimatedInputLatency = await EstimatedInputLatency.request(metricComputationData, context); // eslint-disable-line max-len
     const totalBlockingTime = await TotalBlockingTime.request(metricComputationData, context); // eslint-disable-line max-len
     const layoutShiftVariants = await LayoutShiftVariants.request(trace, context);
 
@@ -80,14 +76,10 @@ class TimingSummary {
       largestContentfulPaintTs: largestContentfulPaint && largestContentfulPaint.timestamp,
       largestContentfulPaintAllFrames: largestContentfulPaintAllFrames && largestContentfulPaintAllFrames.timing, // eslint-disable-line max-len
       largestContentfulPaintAllFramesTs: largestContentfulPaintAllFrames && largestContentfulPaintAllFrames.timestamp, // eslint-disable-line max-len
-      firstCPUIdle: firstCPUIdle && firstCPUIdle.timing,
-      firstCPUIdleTs: firstCPUIdle && firstCPUIdle.timestamp,
       interactive: interactive && interactive.timing,
       interactiveTs: interactive && interactive.timestamp,
       speedIndex: speedIndex && speedIndex.timing,
       speedIndexTs: speedIndex && speedIndex.timestamp,
-      estimatedInputLatency: estimatedInputLatency.timing,
-      estimatedInputLatencyTs: estimatedInputLatency.timestamp,
       totalBlockingTime: totalBlockingTime.timing,
       maxPotentialFID: maxPotentialFID && maxPotentialFID.timing,
       cumulativeLayoutShift: cumulativeLayoutShiftValue,
