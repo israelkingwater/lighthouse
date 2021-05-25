@@ -5,7 +5,7 @@
  */
 'use strict';
 
-/* global self btoa atob pako CompressionStream Response */
+/* global self btoa atob window CompressionStream Response */
 
 const toBase64 = typeof btoa !== 'undefined' ?
   btoa :
@@ -37,6 +37,8 @@ async function encode(string, options) {
       const compAb = await new Response(cs.readable).arrayBuffer();
       bytes = new Uint8Array(compAb);
     } else {
+      /** @type {import('pako')=} */
+      const pako = window.pako;
       bytes = pako.gzip(string);
     }
   }
@@ -64,6 +66,8 @@ function decode(encoded, options) {
   }
 
   if (options.gzip) {
+    /** @type {import('pako')=} */
+    const pako = window.pako;
     return pako.ungzip(bytes, {to: 'string'});
   } else {
     return new TextDecoder().decode(bytes);
