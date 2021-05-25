@@ -620,7 +620,7 @@ class ReportUIFeatures {
   static async openTabWithUrlData(data, url_, windowName) {
     const url = new URL(url_);
     const gzip = Boolean(window.CompressionStream);
-    url.hash = await TextEncoding.encode(JSON.stringify(data), {
+    url.hash = await TextEncoding.stringToBase64(JSON.stringify(data), {
       gzip,
     });
     if (gzip) url.searchParams.set('gzip', '1');

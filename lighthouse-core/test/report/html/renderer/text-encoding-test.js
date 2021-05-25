@@ -11,11 +11,11 @@ const TextEncoding = require('../../../../report/html/renderer/text-encoding.js'
 
 describe('TextEncoding', () => {
   beforeAll(() => {
-    global.pako = require('pako');
+    global.window = {pako: require('pako')};
   });
 
   afterAll(() => {
-    global.pako = undefined;
+    global.window = undefined;
   });
 
   /** @type {string} */

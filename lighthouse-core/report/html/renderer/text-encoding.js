@@ -7,11 +7,11 @@
 
 /* global self btoa atob window CompressionStream Response */
 
-const toBase64 = typeof btoa !== 'undefined' ?
+const btoaIso = typeof btoa !== 'undefined' ?
   btoa :
   /** @param {string} str */
   (str) => Buffer.from(str).toString('base64');
-const fromBase64 = typeof atob !== 'undefined' ?
+const atobIso = typeof atob !== 'undefined' ?
   atob :
   /** @param {string} str */
   (str) => Buffer.from(str, 'base64').toString();
@@ -25,7 +25,7 @@ const fromBase64 = typeof atob !== 'undefined' ?
  * @param {{gzip: boolean}} options
  * @return {Promise<string>}
  */
-async function encode(string, options) {
+async function stringToBase64(string, options) {
   let bytes = new TextEncoder().encode(string);
 
   if (options.gzip) {
@@ -48,9 +48,9 @@ async function encode(string, options) {
   // https://jsbench.me/2gkoxazvjl
   const chunkSize = 5000;
   for (let i = 0; i < bytes.length; i += chunkSize) {
-    binaryString += String.fromCharCode(...new Uint8Array(bytes.buffer.slice(i, i + chunkSize)));
+    binaryString += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
   }
-  return toBase64(binaryString);
+  return btoaIso(binaryString);
 }
 
 /**
@@ -58,12 +58,9 @@ async function encode(string, options) {
  * @param {{gzip: boolean}} options
  * @return {string}
  */
-function decode(encoded, options) {
-  const binaryString = fromBase64(encoded);
-  const bytes = new Uint8Array(binaryString.length);
-  for (let i = 0; i < bytes.length; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
+function base64ToString(encoded, options) {
+  const binaryString = atobIso(encoded);
+  const bytes = Uint8Array.from(binaryString, c => c.charCodeAt(0));
 
   if (options.gzip) {
     /** @type {import('pako')=} */
@@ -75,7 +72,7 @@ function decode(encoded, options) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {encode, decode};
+  module.exports = {stringToBase64, base64ToString};
 } else {
-  self.TextEncoding = {encode, decode};
+  self.TextEncoding = {stringToBase64, base64ToString};
 }
