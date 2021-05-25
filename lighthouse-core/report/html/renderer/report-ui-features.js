@@ -23,7 +23,7 @@
  * the report.
  */
 
-/* globals getFilenamePrefix Util Base64 ElementScreenshotRenderer */
+/* globals getFilenamePrefix Util TextEncoding ElementScreenshotRenderer */
 
 /** @typedef {import('./dom')} DOM */
 
@@ -620,7 +620,7 @@ class ReportUIFeatures {
   static async openTabWithUrlData(data, url_, windowName) {
     const url = new URL(url_);
     const gzip = Boolean(window.CompressionStream);
-    url.hash = await Base64.encode(JSON.stringify(data), {
+    url.hash = await TextEncoding.encode(JSON.stringify(data), {
       gzip,
     });
     if (gzip) url.searchParams.set('gzip', '1');

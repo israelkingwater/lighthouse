@@ -9,7 +9,7 @@
 
 /* eslint-env browser */
 
-/* globals I18n webtreemap strings TreemapUtil Base64 Tabulator Cell Row DragAndDrop Logger GithubApi */
+/* globals I18n webtreemap strings TreemapUtil TextEncoding Tabulator Cell Row DragAndDrop Logger GithubApi */
 
 const DUPLICATED_MODULES_IGNORE_THRESHOLD = 1024;
 const DUPLICATED_MODULES_IGNORE_ROOT_RATIO = 0.01;
@@ -889,7 +889,7 @@ async function main() {
   const queryParams = new URLSearchParams(window.location.search);
   const gzip = queryParams.get('gzip') === '1';
   const hashParams = location.hash ?
-    JSON.parse(Base64.decode(location.hash.substr(1), {gzip})) :
+    JSON.parse(TextEncoding.decode(location.hash.substr(1), {gzip})) :
     {};
   /** @type {Record<string, any>} */
   const params = {

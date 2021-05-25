@@ -73,5 +73,5 @@ function decode(encoded, options) {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {encode, decode};
 } else {
-  self.Base64 = {encode, decode};
+  self.TextEncoding = {encode, decode};
 }

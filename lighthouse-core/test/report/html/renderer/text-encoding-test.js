@@ -5,11 +5,11 @@
  */
 'use strict';
 
-const Base64 = require('../../../../report/html/renderer/base64.js');
+const TextEncoding = require('../../../../report/html/renderer/text-encoding.js');
 
 /* eslint-env jest */
 
-describe('base64', () => {
+describe('TextEncoding', () => {
   beforeAll(() => {
     global.pako = require('pako');
   });
@@ -21,8 +21,8 @@ describe('base64', () => {
   /** @type {string} */
   async function test(str) {
     for (const gzip of [false, true]) {
-      const binary = await Base64.encode(str, {gzip});
-      const roundtrip = Base64.decode(binary, {gzip});
+      const binary = await TextEncoding.encode(str, {gzip});
+      const roundtrip = TextEncoding.decode(binary, {gzip});
       expect(roundtrip.length).toEqual(str.length);
       expect(roundtrip).toEqual(str);
     }
