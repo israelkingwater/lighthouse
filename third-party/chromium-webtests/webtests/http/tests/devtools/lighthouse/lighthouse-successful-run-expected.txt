@@ -500,6 +500,7 @@ meta-description: fail
 meta-refresh: notApplicable
 meta-viewport: notApplicable
 metrics: flaky
+modern-image-formats: flaky
 network-requests: informative
 network-rtt: informative
 network-server-latency: informative
@@ -559,7 +560,6 @@ uses-rel-preconnect: numeric
 uses-rel-preload: flaky
 uses-responsive-images: flaky
 uses-text-compression: flaky
-uses-webp-images: flaky
 valid-lang: notApplicable
 valid-source-maps: pass
 video-caption: notApplicable
@@ -669,6 +669,7 @@ maskable-icon
 meta-description
 meta-refresh
 meta-viewport
+modern-image-formats
 no-document-write
 no-unload-listeners
 no-vulnerable-libraries
@@ -719,7 +720,6 @@ uses-rel-preconnect
 uses-rel-preload
 uses-responsive-images
 uses-text-compression
-uses-webp-images
 valid-lang
 valid-source-maps
 video-caption
