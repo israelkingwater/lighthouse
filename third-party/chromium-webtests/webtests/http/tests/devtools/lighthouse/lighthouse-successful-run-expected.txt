@@ -176,7 +176,6 @@ Computing artifact: Speedline
 Auditing: Screenshot Thumbnails
 Auditing: Final Screenshot
 Computing artifact: Screenshots
-Auditing: Estimated Input Latency
 Auditing: Total Blocking Time
 Computing artifact: TotalBlockingTime
 Computing artifact: LanternTotalBlockingTime
@@ -189,7 +188,6 @@ Computing artifact: CumulativeLayoutShift
 Auditing: No browser errors logged to the console
 Auditing: Initial server response time was short
 Computing artifact: MainResource
-Auditing: First CPU Idle
 Auditing: Time to Interactive
 Computing artifact: Interactive
 Auditing: User Timing marks and measures
