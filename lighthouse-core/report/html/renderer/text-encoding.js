@@ -25,7 +25,7 @@ const atobIso = typeof atob !== 'undefined' ?
  * @param {{gzip: boolean}} options
  * @return {Promise<string>}
  */
-async function stringToBase64(string, options) {
+async function toBase64(string, options) {
   let bytes = new TextEncoder().encode(string);
 
   if (options.gzip) {
@@ -58,7 +58,7 @@ async function stringToBase64(string, options) {
  * @param {{gzip: boolean}} options
  * @return {string}
  */
-function base64ToString(encoded, options) {
+function fromBase64(encoded, options) {
   const binaryString = atobIso(encoded);
   const bytes = Uint8Array.from(binaryString, c => c.charCodeAt(0));
 
@@ -72,7 +72,7 @@ function base64ToString(encoded, options) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {stringToBase64, base64ToString};
+  module.exports = {toBase64, fromBase64};
 } else {
-  self.TextEncoding = {stringToBase64, base64ToString};
+  self.TextEncoding = {toBase64, fromBase64};
 }

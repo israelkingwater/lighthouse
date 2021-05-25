@@ -112,7 +112,7 @@ describe('Lighthouse Treemap', () => {
       const encoded = await page.evaluate(`
         ${fs.readFileSync(
           require.resolve('../../lighthouse-core/report/html/renderer/text-encoding.js'), 'utf-8')}
-        TextEncoding.stringToBase64(${JSON.stringify(json)}, {gzip: true});
+        TextEncoding.toBase64(${JSON.stringify(json)}, {gzip: true});
       `);
 
       await page.goto(`${treemapUrl}?gzip=1#${encoded}`);
@@ -130,7 +130,7 @@ describe('Lighthouse Treemap', () => {
       const encoded = await page.evaluate(`
         ${fs.readFileSync(
           require.resolve('../../lighthouse-core/report/html/renderer/text-encoding.js'), 'utf-8')}
-        TextEncoding.stringToBase64(${JSON.stringify(json)}, {gzip: false});
+        TextEncoding.toBase64(${JSON.stringify(json)}, {gzip: false});
       `);
 
       await page.goto(`${treemapUrl}#${encoded}`);
