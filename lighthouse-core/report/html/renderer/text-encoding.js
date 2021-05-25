@@ -17,7 +17,7 @@ const atobIso = typeof atob !== 'undefined' ?
   (str) => Buffer.from(str, 'base64').toString();
 
 /**
- * Takes an UTF-8 string and returns a URL-safe base64 encoded string.
+ * Takes an UTF-8 string and returns a base64 encoded string.
  * If gzip is true, the UTF-8 bytes are gzipped before base64'd, using
  * CompressionStream (currently only in Chrome), falling back to pako
  * (which is only used to encode in our Node tests).
